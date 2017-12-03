@@ -1,0 +1,138 @@
+﻿@model PagedList.IPagedList<PPCR.Models.PROPERTY>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Projects List";
+}
+<!--Font-->
+<link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+
+<!--css-->
+<link rel="stylesheet" href="~/Content/Site.css" />
+
+<!--Page's Header-->
+<div class="header">
+    <div class="bg-color">
+        <header id="main-header">   </header>
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="banner-info text-center wow fadeIn delay-05s">
+                        <h3>Welcome to Perfect Property Company</h3>
+                        <h2 class="bnr-sub-title">Starting a new journey!!</h2>
+                        <p class="bnr-para">
+                            At PPC, We hold ourselves to the highest ethical and professional standards, and it is our goal to provide the most professional and courteous service.<br />
+                            The PPC has many qualities that make us unique. We build strong relationships with our clients by identifying and catering to their individual needs and by keeping our clients aware and informed during every step of the process.
+                        </p>
+                        <div class="overlay-detail">
+                            <a href="#"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <!--Projects list-->
+    <hr style=" border-top:1px solid black; " />
+    <div>
+        <table style="font-family: 'Raleway', sans-serif;color:black;width:auto">
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <!--Avatar-->
+                    <td width="40%" style="border-right: 1px solid black;text-align:center;">
+                        <img src="~/img/DatabaseImages/@item.Avatar" class="img-responsive img-thumbnail" style="width: 90%" />
+                        <p style="padding-top:5px;font-family: Corbel;"><i class="fa fa-check-square" aria-hidden="true"></i>@item.PROJECT_STATUS.Status_Name</p>
+                    </td>
+                    <!--Project info-->
+                    <td style="text-align:left;padding: 10px;border-bottom:1px dashed black;border-top:1px dashed black;background-color:#b7fbde">
+                        <!--Name-->
+                        <p style="font-weight:bold;font-size:20px;">@item.PropertyName</p>
+                        <hr style=" border-top:1px solid black; " />
+
+                        <!--Price and Features-->
+                        <p>
+                            <span style="font-size:18px;text-decoration:underline;">Price:</span>
+                            <span style="color: #0300ff; font-weight:bold;">@item.Price @item.UnitPrice</span>
+                            | Beds: @item.BedRoom | Baths: @item.BathRoom
+                        </p>
+                        <hr style=" border-top:1px solid black; " />
+
+                        <!--Project type-->
+                        <p style="font-size:18px;">
+                            <span style="text-decoration:underline;">Property type:</span>
+                            <span style="color:#f00">@item.PROPERTY_TYPE.CodeType</span>
+                        </p>
+                        <!--Description-->
+                        <p style="font-size:17px;text-decoration:underline;">Description:</p>
+                        <p>
+                            @item.Content
+                        </p>
+                        <!--View Detail button-->
+                        <p>
+                            <a class="btn btn-info" href="~/Project/ProjectDetail/@item.ID/#dt" role="button">View details »</a>
+                            <a class="btn btn-danger" href="~/Sale/Sale_EditProject/@item.ID/#dt" role="button">Edit »</a>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <hr style=" border-top:1px solid black; " />
+                    </td>
+                </tr>
+
+            }
+        </table>
+
+        <hr style=" border-top:1px solid black; " />
+
+        <div style="text-align:center;background-color:#99f8cf">
+            @Html.PagedListPager(Model, page => Url.Action("Sale_ProjectsList", new { page }))
+        </div>
+    </div>
+
+    <hr style=" border-top:1px solid black; " />
+
+    <p style="text-align:center;color:white">
+        <button class=" btn btn-primary"><a href="javascript:void(0);" onclick="history.go(-1);" style="color:white">Back to Previous Page</a></button>
+    </p>
+
+</div>
+
+@*<script type="text/javascript">
+    $(".select1").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-2 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select2 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select2').html(options);
+        $('.select2 select').html(options).change();
+    });
+
+    $(".select2").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-3 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select3 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select3').html(options);
+    });
+
+    function change2() {
+        if ($('.select1 option:selected').length) {
+            $('.select2').attr('disabled', false);
+        }
+    }
+
+    function change3() {
+        if ($('.select2 option:selected').length) {
+            $('.select3').attr('disabled', false);
+        }
+    }
+</script>*@

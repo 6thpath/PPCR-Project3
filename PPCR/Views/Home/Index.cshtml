@@ -1,0 +1,477 @@
+﻿@model PPCR.ViewModels.ViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<link rel="stylesheet" type="text/css" href="Content/font-awesome.min.css">
+
+<!--Page's Header-->
+<div class="header">
+    <div class="bg-color">
+        <header id="main-header"></header>
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="banner-info text-center wow fadeIn delay-05s">
+                        <h3>Welcome to Perfect Property Company</h3>
+                        <h2 class="bnr-sub-title">Starting a new journey!!</h2>
+                        <p class="bnr-para">
+                            At PPC, We hold ourselves to the highest ethical and professional standards, and it is our goal to provide the most professional and courteous service.<br />
+                            The PPC has many qualities that make us unique. We build strong relationships with our clients by identifying and catering to their individual needs and by keeping our clients aware and informed during every step of the process.
+                        </p>
+                        <div class="brn-btn">
+                            <a href="#service" class="btn btn-download">Learn more...</a>
+                        </div>
+                        <div class="overlay-detail">
+                            <a href="#"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+<!--Filter-->
+<div class="container">
+    <div style="width: 90%; margin: 0 auto 0; padding-top: 1%; padding-bottom: 1%;text-align:center">
+        <div id="filter" class="col-lg-12">
+            <form role="search" class="text-center" action="@Url.Action("Search","Home")" method="get">
+                <!--Property Type-->
+                <select id="soflow">
+                    <option style="font-weight:bold">Property Type</option>
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                    <option>Office</option>
+                    <option>House</option>
+                </select>
+
+                <!--Beds-->
+                <select id="soflow">
+                    <option style="font-weight:bold">Beds</option>
+                    <option value="0">Any</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                    <option value="5">5+</option>
+                </select>
+
+                <!--Baths-->
+                <select id="soflow">
+                    <option style="font-weight:bold">Baths</option>
+                    <option value="0">Any</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                    <option value="5">5+</option>
+                </select>
+
+                <br />
+
+                <!--District-->
+                <select id="soflow" class="select1" name="select1" onchange='change2()'>
+                    <option value="-1" selected disabled style="font-weight:bold">District</option>
+                    @foreach (var item in Model.zDistricts)
+                    {
+                        <option name="@item.ID" value="@item.ID">@item.DistrictName</option>
+                    }
+                </select>
+                <span style="color:black; font-size:15px;">&rArr;</span>
+                <!--Ward-->
+                <select id="soflow" class="select2" name="select2" disabled onchange='change3()'>
+                    <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                    @foreach (var item in Model.zWards)
+                    {
+                        <option name="@item.ID" value="@item.District_ID">@item.WardName</option>
+                    }
+                </select>
+                <span style="color:black; font-size:15px;">&rArr;</span>
+                <!--Street-->
+                <select id="soflow" class="select3" name="select3" disabled>
+                    <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                    @foreach (var item in Model.zStreets)
+                    {
+                        <option name="@item.ID" value="@item.District_ID">@item.StreetName</option>
+                    }
+                </select>
+
+                <div class="form-group">
+                    <!--Keyword-->
+                    <input type="text" placeholder=" Search..." name="text" style="font-family:Corbel;border-radius:3px;border: 1px solid black;margin:10px;" />
+                    <!--Button-->
+                    <button type="submit" class="btn btn-primary" style="font-family: Corbel; font-weight:bold;margin-left:5%;border-color:white;">Search Property</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr style=" border-top:1px solid black; " />
+<!---->
+<!--Featured Project-->
+<section id="portfolio" class="section-padding wow fadeInUp delay-05s text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="service-title pad-bt15">Featured Properties</h2>
+                <p class="sub-title pad-bt15">
+                    A list of projects picked by PPC Rental
+                </p>
+                <hr class="bottom-line">
+            </div>
+            <!--Slider-->
+            <div class="container">
+                <!--Carousel-->
+                <div>
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; padding: 15px;">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                            <li data-target="#myCarousel" data-slide-to="4"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            @foreach (var item in Model.zProperties.Take(1))
+                            {
+
+                                <div class="item active">
+                                    <img src="~/img/DatabaseImages/@item.Avatar" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h3 style="background-color: rgba(0,0,0,0.8)">@item.PropertyName</h3>
+                                        <p style="background-color: rgba(0,0,0,0.8)">@item.Content</p>
+                                    </div>
+                                </div>
+
+                            }
+
+                            @foreach (var item in Model.zProperties.Take(4))
+                            {
+
+                                <div class="item">
+                                    <img src="~/img/DatabaseImages/@item.Avatar" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h3 style="background-color: rgba(0,0,0,0.8)">@item.PropertyName</h3>
+                                        <p style="background-color: rgba(0,0,0,0.8)">@item.Content</p>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                        <!-- Controls -->
+                        @*<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>*@
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <!--6 Featured Project-->
+            @foreach (var item in Model.zProperties.Take(6))
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item padding-right-zero mr-btn-15">
+                    <figure>
+                        <img src="~/img/DatabaseImages/@item.Avatar" class="img-responsive">
+                        <figcaption>
+                            <h2>@item.PropertyName</h2>
+                            <p>
+                                <i class="fa fa-bed" aria-hidden="true"></i> Beds: @item.BedRoom |
+                                <i class="fa fa-bath" aria-hidden="true"></i> Baths: @item.BathRoom
+                            </p>
+                            <p>@item.Content.Substring(0, 35)...</p>
+                            <p><a class="btn btn-default" href="~/Project/ProjectDetail/@item.ID/#dt" role="button">View details »</a></p>
+                        </figcaption>
+                    </figure>
+                </div>
+            }
+
+            <div class="brn-btn" style="text-align:center">
+                <a href="~/User/User_ViewProjectList" class="btn btn-download" role="button" style="background-color:#002F2F">View more »</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<!--Help navbar-->
+<section id="service" class="section-padding wow fadeInUp delay-05s">
+    <div class="container" style="color:black">
+        <div class="row" style="text-align:center;">
+            <div class="col-md-12 text-center">
+                <h2 class="service-title pad-bt15">How Can We Help You?</h2>
+                <p class="sub-title pad-bt15">Please feel free to let us know what you need.</p>
+                <hr class="bottom-line">
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="service-item">
+                    <h3><span>F</span>ind my Dreamhome</h3>
+                    <p>Tell us what you’re looking for!<br /> Get the latest listings delivered straight to your inbox.</p>
+                    <a href="">Learn more...</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="service-item">
+                    <h3><span>W</span>hat's my home worth?</h3>
+                    <p>Selling your home? <br />We’re here to help you price it right – get a comparative market analysis today.</p>
+                    <a href="">Learn more...</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="service-item">
+                    <h3><span>H</span>elp me relocate</h3>
+                    <p>Are you ready to find your dream home?<br /> Want a smooth, stress-free move? Of course you do! Find out how we can help you today.</p>
+                    <a href="">Learn more...</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="service-item">
+                    <h3><span>S</span>end me the latest news</h3>
+                    <p>Sign up for daily email update.</p>
+                    <a href="">Learn more...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<!--About-->
+<section id="feature" class="section-padding wow fadeIn delay-05s">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="wrap-item text-center">
+                    <div class="item-img">
+                        <img src="img/ser01.png">
+                    </div>
+                    <h3 class="pad-bt15">Diverse</h3>
+                    <p>Each of the neighborhoods that make up the nine counties in the region has something unique and special to offer. The area is a melting pot of cultures and ethnicities, offering opportunities to everyone.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="wrap-item text-center">
+                    <div class="item-img">
+                        <img src="img/ser02.png">
+                    </div>
+                    <h3 class="pad-bt15">Clean and Green</h3>
+                    <p>Local governments and residents work consciously to preserve the Ho chi Minh City and its bounties. The region is well-known for its natural beauty, and is a frontrunner in organic and sustainable agriculture, as well as sustainable energy.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="wrap-item text-center">
+                    <div class="item-img">
+                        <img src="img/ser03.png">
+                    </div>
+                    <h3 class="pad-bt15">Trendsetter</h3>
+                    <p>Ho Chi Minh City sets the pace – whether in technology, fashion or food. A hotbed of innovation, more patents are produced in the PPC Rental than anywhere else in the country.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="wrap-item text-center">
+                    <div class="item-img">
+                        <img src="img/ser04.png">
+                    </div>
+                    <h3 class="pad-bt15">Family-Friendly</h3>
+                    <p>This is undeniably one of the best places to raise a family. There are plenty of job opportunities in a wide array of industries including technology, hospitality, food and agriculture.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<!--What Clients say-->
+<section id="testimonial" class="wow fadeInUp delay-05s">
+    <div class="bg-testicolor">
+        <div class="container section-padding">
+            <div class="row">
+                <div class="testimonial-item">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<!--Clients feedback-->
+<section id="blog" class="section-padding wow fadeInUp delay-05s">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="service-title pad-bt15">Latest from our blog</h2>
+                <p class="sub-title pad-bt15"></p>
+                <hr class="bottom-line">
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="blog-sec">
+                    <div class="blog-img">
+                        <a href="">
+                            <img src="img/blog01.jpg" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="blog-info">
+                        <h2>City Living October 2017.</h2>
+                        <div class="blog-comment">
+                            <p>Posted In: <span>Legal Advice</span></p>
+                            <p>
+                                <span><a href="#"><i class="fa fa-comments"></i></a> 31</span>
+                                <span><a href="#"><i class="fa fa-eye"></i></a> 2</span>
+                            </p>
+                        </div>
+                        <br />
+                        <p>September has been a relatively active month for us as we have launched and relaunched a number of properties - most of which have been received well and have been garnering solid attention from buyers and brokers.</p>
+                        <a href="" class="read-more" style="color:black">Read more →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="blog-sec">
+                    <div class="blog-img">
+                        <a href="">
+                            <img src="img/blog02.jpg" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="blog-info">
+                        <h2>City Living September 2017.</h2>
+                        <div class="blog-comment">
+                            <p>Posted In: <span>Legal Advice</span></p>
+                            <p>
+                                <span><a href="#"><i class="fa fa-comments"></i></a> 29</span>
+                                <span><a href="#"><i class="fa fa-eye"></i></a> 9</span>
+                            </p>
+                        </div>
+                        <br />
+                        <p>One trend that has emerged this summer: when property is listed over the perceived value, Buyers are showing reluctance to even “low-ball” in absence of other buyers showing interest in the property.  </p>
+                        <a href="" class="read-more" style="color:black">Read more →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="blog-sec">
+                    <div class="blog-img">
+                        <a href="">
+                            <img src="img/blog03.jpg" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="blog-info">
+                        <h2>City Living August 2017.</h2>
+                        <div class="blog-comment">
+                            <p>Posted In: <span>Legal Advice</span></p>
+                            <p>
+                                <span><a href="#"><i class="fa fa-comments"></i></a> 24</span>
+                                <span><a href="#"><i class="fa fa-eye"></i></a> 9</span>
+                            </p>
+                        </div>
+                        <br />
+                        <p>July has been more active than past July’s, but like always, it's a steep drop off from May and June.  We’ve been happy to be working with a few serious buyers who have been looking for some time and recently put in very reasonable bids on properties. </p>
+                        <a href="" class="read-more" style="color:black">Read more →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<!--Contact-->
+<section id="contact" class="section-padding wow fadeInUp delay-05s">
+    <div class="container">
+        <div class="row" style="text-align:center;">
+            <div class="col-md-12 text-center white">
+                <h2 class="service-title pad-bt15">Keep in touch with us</h2>
+                <p class="sub-title pad-bt15">We would love to hear from you!<br>Send us a message and we’ll get right back in touch.</p>
+                <hr class="bottom-line white-bg">
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="loction-info white">
+                    <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>3rd floor, Jabes 1, 244 Cong Quynh street<br>Pham Ngu Lao ward, District 1, Ho Chi Minh city.</p>
+                    <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@ppcrental.com</p>
+                    <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+31 2409 2909</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="contact-form">
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+                    <form action="" method="post" role="form" class="contactForm">
+                        <div class="col-md-6 padding-right-zero">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validation"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit">SEND NOW</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.easing.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/wow.js"></script>
+<script src="~/Scripts/jquery.bxslider.min.js"></script>
+<script src="~/Scripts/custom.js"></script>
+<script src="~/contactform/contactform.js"></script>
+
+<script type="text/javascript">
+    $(".select1").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-2 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select2 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select2').html(options);
+        $('.select2 select').html(options).change();
+    });
+
+    $(".select2").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-3 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select3 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select3').html(options);
+    });
+
+    function change2() {
+        if ($('.select1 option:selected').length) {
+            $('.select2').attr('disabled', false);
+        }
+    }
+
+    function change3() {
+        if ($('.select2 option:selected').length) {
+            $('.select3').attr('disabled', false);
+        }
+    }
+</script>
+

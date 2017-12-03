@@ -1,0 +1,178 @@
+﻿@model PPCR.Models.USER
+
+@{
+    ViewBag.Title = "Register";
+    if (Session["ID"] != null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+<style>
+    .form-register {
+        max-width: 420px;
+        padding: 30px 38px 66px;
+        margin: 0 auto;
+        background-color: #eee;
+        border: 3px dotted rgba(0,0,0,0.1);
+    }
+
+    .form-register-heading {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        position: relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+    }
+
+    input[type="text"] {
+        margin-bottom: 0px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    input[type="password"] {
+        margin-bottom: 20px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .colorgraph {
+        height: 7px;
+        border-top: 0;
+        background: #c4e17f;
+        border-radius: 5px;
+        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    }
+</style>
+
+<!--Page's Header-->
+<div class="header">
+    <div class="bg-color">
+        <header id="main-header"></header>
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="banner-info text-center wow fadeIn delay-05s">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            if (ViewBag.message != null)
+                            {
+                                <h1>@ViewBag.message</h1>
+                            }
+
+                            <div class="form-register">
+                                <h3 class="form-register-heading" style="color:black">Create your own account!</h3>
+                                <hr class="colorgraph">
+                                <!--Announcement-->
+                                <div class="alert text-center">
+                                    <label class="help-block">@ViewBag.SuccessMessage</label>
+                                    <label class="help-block">@ViewBag.DuplicateMessage</label>
+                                </div>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <!--Email-->
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                <div class="input-group" style="padding-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                    @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                </div>
+
+                                <!--Password-->
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                <div class="input-group" style="padding-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-keyboard-o" aria-hidden="true"></i></span>
+                                    @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                </div>
+
+                                <!--ConfirmPassword-->
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                <div class="input-group" style="padding-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-keyboard-o" aria-hidden="true"></i></span>
+                                    @*@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
+                                </div>
+
+                                <!--Fullname-->
+                                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                <div class="input-group" style="padding-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
+                                    @*@Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Full Name" } })
+                                </div>
+
+                                <!--Phone-->
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                <div class="input-group" style="padding-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
+                                    @*@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
+                                </div>
+
+                                <!--Address-->
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                <div class="input-group" style="padding-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                                    @*@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Address" } })
+                                </div>
+
+                                <!--Role-->
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2 hidden" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Role, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control hidden",
+                                           @Value = "3"
+                                       }
+                                   })
+                                        @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <!--Status-->
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2 hidden" })
+                                        <div class="col-md-10">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control ", disabled = "disabled" } })
+                                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                <!--Submit button-->
+                                <div class="form-group text-center">
+                                    <input type="submit" value="Sign up" class="btn btn-primary" />
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <p style="color:black">Already have an account? @Html.ActionLink("Login now!!", "Login", "Account")</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

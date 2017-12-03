@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - PPC Rental</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300|Raleway:300,400,900,700italic,700,300,600">
+    <link rel="stylesheet" type="text/css" href="Content/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="Content/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Content/animate.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="loader"></div>
+    <!--Navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top top-nav-collapse">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("PPCRental", "Index", "Home", null, new { @class = "navbar-brand" })*@
+                <a class="navbar-brand" href="~/Home/Index">PPC<span class="logo-dec">Rental</span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (ViewBag.Title == "Home Page")
+                    {
+                        <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li class="">@Html.ActionLink("About", "About", "Home")</li>
+                        <li class=""><a href="#portfolio">Featured</a></li>
+                        <li class=""><a href="#service">Services</a></li>
+                        <li class=""><a href="#blog">Blog</a></li>
+                        <li class=""><a href="#contact">Contact Us</a></li>
+                    }
+                    else if (ViewBag.Title == "About")
+                    {
+                        <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li class="active">@Html.ActionLink("About", "About", "Home")</li>
+                        @*<li class=""><a style="pointer-events: none;cursor: default;">Featured</a></li>
+                            <li class=""><a style="pointer-events: none;cursor: default;">Services</a></li>
+                            <li class=""><a style="pointer-events: none;cursor: default;">Blog</a></li>
+                            <li class=""><a style="pointer-events: none;cursor: default;">Contact Us</a></li>*@
+                    }
+                    else
+                    {
+                        <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li class="">@Html.ActionLink("About", "About", "Home")</li>
+                        @*<li class=""><a style="pointer-events: none;cursor: default;">Featured</a></li>
+                            <li class=""><a style="pointer-events: none;cursor: default;">Services</a></li>
+                            <li class=""><a style="pointer-events: none;cursor: default;">Blog</a></li>
+                            <li class=""><a style="pointer-events: none;cursor: default;">Contact Us</a></li>*@
+                    }
+                    <li class=""><a href="#"> | </a></li>
+                    <li class="">@Html.ActionLink("Projects List", "Sale_ProjectsList","Sale")</li>
+                    <li class="">@Html.Partial("_LoginPartial")</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        @RenderBody()
+        <!--Page's Footer-->
+        <footer id="footer" style="background-color: rgba(73, 84, 105, 1.1)">
+            <div class="container">
+                <div class="row text-center">
+                    <div style="position:static; letter-spacing:10px;">
+                        <a href="#" target="_blank">@*Youtube*@<i class="fa fa-2x fa-youtube-square" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Facebook*@<i class="fa fa-2x fa-facebook-official" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Twitter*@<i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Linked In*@<i class="fa fa-2x fa-linkedin-square" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Instagram*@<i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Google Plus*@<i class="fa fa-2x fa-google-plus-square" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Pinterest*@<i class="fa fa-2x fa-pinterest-square" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank">@*Email*@<i class="fa fa-2x fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="credits" style="position:static">
+                        <span style="color:white"> Copyright © 2017 </span><a href="#">K21T2 - Dreamers</a>
+                        <span style="color:white">. All rights reserved. <a class="sitemap" href="#">Sitemap</a> | Real Estate Website Design &amp; Internet Marketing by </span>
+                        <a href="#">K21T2 - Dreamers</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!---->
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,146 @@
+﻿@model PPCR.Models.PROPERTY
+
+@{
+    ViewBag.Title = "Project Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+
+<style>
+    #Feature td {
+        padding: 10px;
+        width: 20%;
+    }
+</style>
+
+<!--Page's Header-->
+<div class="header">
+    <div class="bg-color">
+        <header id="main-header"></header>
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="banner-info text-center wow fadeIn delay-05s">
+                        <h3>Welcome to Perfect Property Company</h3>
+                        <h2 class="bnr-sub-title">Starting a new journey!!</h2>
+                        <p class="bnr-para">
+                            At PPC, We hold ourselves to the highest ethical and professional standards, and it is our goal to provide the most professional and courteous service.<br />
+                            The PPC has many qualities that make us unique. We build strong relationships with our clients by identifying and catering to their individual needs and by keeping our clients aware and informed during every step of the process.
+                        </p>
+                        @*<div class="brn-btn">
+                                <a href="#service" class="btn btn-download">Learn more...</a>
+                            </div>*@
+                        <div class="overlay-detail">
+                            <a href="#"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p id="dt"></p>
+    <hr />
+    <div style="background-color: #baf7f7 ;color:black; font-family:'Raleway', sans-serif;">
+        <!--Property Name and Price-->
+        <div style="font-size:40px; color:black; padding-left:10px; padding-right:10px; background-color:rgba(0,0,0,0.3)">
+            <table>
+                <tr>
+                    <td style="width:90%">
+                        <span style="color:#ff0000; text-shadow:1px 1px 50px #ff0000;padding-left: 10px"><i class="fa fa-file-code-o" aria-hidden="true"></i></span> &nbsp;
+                        <span style="text-shadow:2px 2px 10px #747171">
+                            @Html.DisplayFor(model => model.PropertyName) -
+                        <span style="color:#0026ff; text-shadow:1px 1px 50px #0026ff;">@Html.DisplayFor(model => model.Price)</span>
+                        @Html.DisplayFor(model => model.UnitPrice)
+                    </span>
+                </td>
+                <td style="width:10%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!--Property Avatar-->
+    <div style="text-align:center; padding: 10px;">
+        <img src="~/img/DatabaseImages/@Model.Avatar" class="img-responsive img-thumbnail" width="50%" />
+    </div>
+
+    <!--Project Details-->
+    <div style="font-family:'Raleway', sans-serif; font-size:16px;">
+        <p style="font-size:25px;padding-left:10px;font-size:22px;"><i class="fa fa-info-circle" aria-hidden="true"></i> Project Details</p>
+        <hr style=" border-top:1px solid black; " />
+        <table id="Feature">
+            <tr>
+                <td style="width:2%"></td>
+                <!--Bedroom-->
+                <td>
+                    <p><i class="fa fa-bed" aria-hidden="true"></i> Beds: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.BedRoom)</span></p>
+                </td>
+                <!--Bathroom-->
+                <td>
+                    <p><i class="fa fa-bath" aria-hidden="true"></i> Baths: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.BathRoom)</span></p>
+                </td>
+                <!--Parking Place-->
+                <td>
+                    <p><i class="fa fa-car" aria-hidden="true"></i> Parking Place: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.PackingPlace)</span></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:2%"></td>
+                <!--District-->
+                <td>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> District: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.DISTRICT.DistrictName)</span></p>
+                </td>
+                <!--Ward-->
+                <td>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> Ward: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.WARD.WardName)</span></p>
+
+                </td>
+                <!--Street-->
+                <td>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> Street: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.STREET.StreetName)</span></p>
+                </td>
+            </tr>
+        </table>
+
+        <hr style=" border-top:1px solid black; " />
+
+        <table>
+            <!--Project Description-->
+            <tr>
+                <td style="width:70%;padding:10px;font-size:20px;">
+                    <p><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Project Description</p>
+                </td>
+                <td style="width:30%;padding:10px;text-align:center;font-size:20px;">
+                    <p><i class="fa fa-home" aria-hidden="true"></i> &nbsp; PROPERTY TYPE</p>
+                </td>
+            </tr>
+            <!--Project type And Status-->
+            <tr>
+                <td rowspan="2" style="width:70%;padding:10px;">
+                    <p>@Html.DisplayFor(model => model.Content).</p>
+                </td>
+                <td style="width:30%; padding:10px; text-align:center; color:red; font-weight:bold">
+                    <p>@Html.DisplayFor(model => model.PROPERTY_TYPE.CodeType)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:30%;padding:10px;text-align:center;">
+                    <p style="font-size:20px;"><i class="fa fa-flag" aria-hidden="true"></i> &nbsp; PROJECT STATUS</p>
+                    <p style="font-family:Corbel; ">@Html.DisplayFor(model => model.PROJECT_STATUS.Status_Name)</p>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<hr style=" border-top:1px solid black; " />
+
+<p style="text-align:center;color:white">
+    <button class=" btn btn-primary"><a href="javascript:void(0);" onclick="history.go(-1);" style="color:white">Back to Previous Page</a></button>
+</p>
+</div>
+
