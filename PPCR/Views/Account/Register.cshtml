@@ -75,7 +75,7 @@
                                 <h3 class="form-register-heading" style="color:black">Create your own account!</h3>
                                 <hr class="colorgraph">
                                 <!--Announcement-->
-                                <div class="alert text-center">
+                                <div class="alert alert-danger text-center">
                                     <label class="help-block">@ViewBag.SuccessMessage</label>
                                     <label class="help-block">@ViewBag.DuplicateMessage</label>
                                 </div>
@@ -175,4 +175,6 @@
 <!---->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }

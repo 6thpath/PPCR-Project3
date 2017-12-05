@@ -2,6 +2,10 @@
 @using PagedList.Mvc
 @{
     ViewBag.Title = "Projects List";
+    if (Convert.ToInt32(Session["ID"]) != (int)2)
+    {
+        Response.Redirect("~/Home/Index");
+    }
 }
 <!--Font-->
 <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
@@ -37,7 +41,7 @@
     <hr style=" border-top:1px solid black; " />
     <div>
         <table style="font-family: 'Raleway', sans-serif;color:black;width:auto">
-
+           ,
             @foreach (var item in Model)
             {
                 <tr>

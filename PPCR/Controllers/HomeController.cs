@@ -12,6 +12,8 @@ namespace PPCRentalProject.Controllers
     public class HomeController : Controller
     {
         DemoPPCRentalEntities entities = new DemoPPCRentalEntities();
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewModel Vm = new ViewModel();
@@ -22,6 +24,7 @@ namespace PPCRentalProject.Controllers
             return View(Vm);
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

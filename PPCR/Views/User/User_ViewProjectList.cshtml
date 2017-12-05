@@ -2,10 +2,6 @@
 @using PagedList.Mvc
 @{
     ViewBag.Title = "Projects List";
-    if (Session["ID"] == null)
-    {
-        Response.Redirect("~/Home/Index");
-    }
 }
 <!--Font-->
 <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
