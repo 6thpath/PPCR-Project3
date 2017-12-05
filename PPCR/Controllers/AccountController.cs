@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PPCR.Models;
 using System.Threading.Tasks;
+using PPCR.PasswordHelper;
 
 namespace PPCR.Controllers
 {
@@ -34,14 +35,16 @@ namespace PPCR.Controllers
             {
                 if (entities.USERs.Any( x => x.Email == user.Email))
                 {
-                    ViewBag.DuplicateMessage = "This Email has already used";
+                    ViewBag.DuplicateMessage = "This Email has already used.";
                     return View("Register", user);
                 }
+                user.Password = Crypto.Hash(user.Password);
+                user.ConfirmPassword = Crypto.Hash(user.ConfirmPassword);
                 entities.USERs.Add(user);
                 entities.SaveChanges();
             }
             ModelState.Clear();
-            ViewBag.SuccessMessage = "Your account successully registered";
+            ViewBag.SuccessMessage = "Your account successfully registered. Your account will be activated in 24h if all information is valid.";
 
             return View("Register", new USER());
         }
@@ -55,23 +58,25 @@ namespace PPCR.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(USER user)
         {
             using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
             {
-                var userDetails = entities.USERs.Where( x => x.Email == user.Email && x.Password == user.Password && x.Status == true).FirstOrDefault();
-                if(userDetails == null)
+                var EncryptedUsersPassword = Crypto.Hash(user.Password);
+                var UserDetails = entities.USERs.Where(x => x.Email == user.Email && x.Password == EncryptedUsersPassword && x.Status == true).FirstOrDefault();
+                if (UserDetails == null)
                 {
                     ViewBag.LoginError = "Wrong username or password.";
                     return View("Login", user);
                 }
                 else
                 {
-                    Session["ID"] = userDetails.ID;
-                    Session["Email"] = userDetails.Email;
-                    Session["FullName"] = userDetails.FullName;
-                    Session["Role"] = userDetails.Role;
-                    return RedirectToAction("Index","Home");
+                    Session["ID"] = UserDetails.ID;
+                    Session["Email"] = UserDetails.Email;
+                    Session["FullName"] = UserDetails.FullName;
+                    Session["Role"] = UserDetails.Role;
+                    return RedirectToAction("Index", "Home");
                 }
             }
         }
