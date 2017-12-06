@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Edit Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Convert.ToInt32(Session["Role"]) != 2)
+    {
+        Response.Redirect("~/Home/Index");
+    }
 } 
 
 <style>

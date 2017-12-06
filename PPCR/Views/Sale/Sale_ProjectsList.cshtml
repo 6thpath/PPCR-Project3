@@ -2,7 +2,7 @@
 @using PagedList.Mvc
 @{
     ViewBag.Title = "Projects List";
-    if (Convert.ToInt32(Session["ID"]) != (int)2)
+    if (Convert.ToInt32(Session["Role"]) != 2)
     {
         Response.Redirect("~/Home/Index");
     }
@@ -16,7 +16,7 @@
 <!--Page's Header-->
 <div class="header">
     <div class="bg-color">
-        <header id="main-header">   </header>
+        <header id="main-header"></header>
         <div class="wrapper">
             <div class="container">
                 <div class="row">

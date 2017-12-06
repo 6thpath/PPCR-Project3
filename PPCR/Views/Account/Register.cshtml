@@ -53,6 +53,18 @@
         background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
         background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
     }
+    /*.text-alert {
+        width: auto;
+        max-width: 300px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        top: 5px;
+        left: 110%;
+    }*/
 </style>
 
 <!--Page's Header-->
@@ -71,14 +83,23 @@
                                 <h1>@ViewBag.message</h1>
                             }
 
-                            <div class="form-register">
+                            <div class="form-register" style="margin-bottom:50px">
                                 <h3 class="form-register-heading" style="color:black">Create your own account!</h3>
                                 <hr class="colorgraph">
-                                <!--Announcement-->
-                                <div class="alert alert-danger text-center">
-                                    <label class="help-block">@ViewBag.SuccessMessage</label>
-                                    <label class="help-block">@ViewBag.DuplicateMessage</label>
-                                </div>
+                                @if (ViewBag.DuplicateMessage != null)
+                                {
+                                    <!--Duplicate Announcement-->
+                                    <div class="alert alert-danger text-center">
+                                        <label class="help-block">@ViewBag.DuplicateMessage</label>
+                                    </div>
+                                }
+                                else if (ViewBag.SuccessMessage != null)
+                                {
+                                    <!--Success Announcement-->
+                                    <div class="alert alert-success text-center">
+                                        <label class="help-block">@ViewBag.SuccessMessage</label>
+                                    </div>
+                                }
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                 <!--Email-->

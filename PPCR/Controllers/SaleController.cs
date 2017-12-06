@@ -16,41 +16,42 @@ namespace PPCRentalProject.Controllers
         // GET: Sale
         public ActionResult Sale_ProjectsList(int? page)
         {
-            var props = entities.PROPERTies.ToList();
+            var Properties = entities.PROPERTies.ToList();
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(props.ToPagedList(pageNumber, pageSize));
+            return View(Properties.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
         public ActionResult Sale_EditProject(int id)
         {
-            var proj = entities.PROPERTies.FirstOrDefault(x => x.ID == id);
+            var ProjectDetails = entities.PROPERTies.FirstOrDefault(x => x.ID == id);
             ViewBag.Property_Type = entities.PROPERTY_TYPE.OrderByDescending(x => x.ID).ToList();
             ViewBag.StreetName = entities.STREETs.ToList();
             ViewBag.WardName = entities.WARDs.OrderByDescending(x => x.ID).ToList();
             ViewBag.DistrictName = entities.DISTRICTs.OrderByDescending(x => x.ID).ToList();
-            return View(proj);
+            return View(ProjectDetails);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Sale_EditProject(int id, PROPERTY p)
         {
-            var Ei = entities.PROPERTies.FirstOrDefault(x => x.ID == id);
-            Ei.Avatar = p.Avatar;
-            Ei.Images = p.Images;
-            Ei.PropertyName = p.PropertyName;
-            Ei.PropertyType_ID = p.PropertyType_ID;
-            Ei.Area = p.Area;
-            Ei.BedRoom = p.BedRoom;
-            Ei.BathRoom = p.BathRoom;
-            Ei.PackingPlace = p.PackingPlace;
-            Ei.DISTRICT = p.DISTRICT;
-            Ei.WARD = p.WARD;
-            Ei.STREET = p.STREET;
-            Ei.Content = p.Content;
-            Ei.Status_ID = p.Status_ID;
-            Ei.Note = p.Note;
+            var EditedInfo = entities.PROPERTies.FirstOrDefault(x => x.ID == id);
+            EditedInfo.Avatar = p.Avatar;
+            EditedInfo.Images = p.Images;
+            EditedInfo.PropertyName = p.PropertyName;
+            EditedInfo.PropertyType_ID = p.PropertyType_ID;
+            EditedInfo.Area = p.Area;
+            EditedInfo.BedRoom = p.BedRoom;
+            EditedInfo.BathRoom = p.BathRoom;
+            EditedInfo.PackingPlace = p.PackingPlace;
+            EditedInfo.DISTRICT = p.DISTRICT;
+            EditedInfo.WARD = p.WARD;
+            EditedInfo.STREET = p.STREET;
+            EditedInfo.Content = p.Content;
+            EditedInfo.Status_ID = p.Status_ID;
+            EditedInfo.Note = p.Note;
             entities.SaveChanges();
             return RedirectToAction("Sale_ProjectsList");
         }
