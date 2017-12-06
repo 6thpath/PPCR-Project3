@@ -33,7 +33,7 @@ namespace PPCR.Controllers
         {
             using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
             {
-                if (entities.USERs.Any( x => x.Email == user.Email))
+                if (entities.USERs.Any(x => x.Email == user.Email))
                 {
                     ViewBag.DuplicateMessage = "This Email has already used.";
                     return View("Register", user);
@@ -76,16 +76,23 @@ namespace PPCR.Controllers
                     Session["Email"] = UserDetails.Email;
                     Session["FullName"] = UserDetails.FullName;
                     Session["Role"] = UserDetails.Role;
-                    return RedirectToAction("Index", "Home");
+                    if (Convert.ToInt32(Session["Role"]) == 1)
+                    {
+                        return RedirectToAction("Admin_ControlPage", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
         }
-        
+
         public ActionResult Logout()
         {
             int ID = (int)Session["ID"];
             Session.Abandon();
-            return RedirectToAction("Login","Account");
+            return RedirectToAction("Login", "Account");
         }
 
 
