@@ -44,7 +44,7 @@ namespace PPCR.Models
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [Phone]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
         public string Phone { get; set; }
 

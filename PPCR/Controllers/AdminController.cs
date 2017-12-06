@@ -14,14 +14,12 @@ namespace PPCRentalProject.Controllers
     {
         DemoPPCRentalEntities entities = new DemoPPCRentalEntities();
 
-        public ActionResult Admin_ControlPage()
+        public ActionResult Admin_ControlPage(int? page)
         {
-            ViewModel VM = new ViewModel();
-            VM.zUsers = entities.USERs.ToList();
-            return View(VM);
-
-            //var UserList = entities.USERs.ToList();
-            //return View(UserList);
+            var UserList = entities.USERs.ToList();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(UserList.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
