@@ -70,10 +70,10 @@
                         </div>
                         <!-- /input-group -->
                     </li>
-                    @if (ViewBag.Title == "Control Page")
+                    @if (ViewBag.Title == "Control Page" || ViewBag.Title == "Decentralization Page")
                     {
                         <li>
-                            <a href="#" class="active"><i class="fa fa-user-circle" aria-hidden="true"></i> Users</a>
+                            <a href="@Url.Action("Admin_ControlPage","Admin")" class="active"><i class="fa fa-user-circle" aria-hidden="true"></i> Users</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
@@ -82,7 +82,7 @@
                     else
                     {
                         <li>
-                            <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> Users</a>
+                            <a href="@Url.Action("Admin_ControlPage","Admin")"><i class="fa fa-user-circle" aria-hidden="true"></i> Users</a>
                         </li>
                         <li>
                             <a href="#" class="active"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>

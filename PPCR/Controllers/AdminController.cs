@@ -30,16 +30,17 @@ namespace PPCRentalProject.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Admin_Decentralization(int id, USER user)
         {
             var EditedInfo = entities.USERs.FirstOrDefault(x => x.ID == id);
             EditedInfo.Email = user.Email;
+            EditedInfo.Password = user.Password;
             EditedInfo.FullName = user.FullName;
             EditedInfo.Phone = user.Phone;
             EditedInfo.Address = user.Address;
             EditedInfo.Role = user.Role;
             EditedInfo.Status = user.Status;
+            //entities.SaveChanges();
             return RedirectToAction("Admin_ControlPage");
         }
     }
