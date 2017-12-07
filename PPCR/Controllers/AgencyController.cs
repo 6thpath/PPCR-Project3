@@ -12,10 +12,21 @@ namespace PPCRentalProject.Controllers
     public class AgencyController : Controller
     {
         DemoPPCRentalEntities entities = new DemoPPCRentalEntities();
-        // GET: Agency
-        public ActionResult Index()
+        public ActionResult Agency_AccountPage(int id)
         {
-            return View();
+            using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
+            {
+                var AccountDetails = entities.USERs.FirstOrDefault(x => x.ID == id);
+                return View(AccountDetails);
+            }
+        }
+
+        public ActionResult Agency_ProjectsList(int? page, int id)
+        {
+            var Vm = entities.PROPERTies.ToList().Where(x => x.ID == id);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(Vm.ToPagedList(pageNumber, pageSize));
         }
     }
 }

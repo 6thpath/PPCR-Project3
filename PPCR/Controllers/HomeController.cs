@@ -23,6 +23,13 @@ namespace PPCRentalProject.Controllers
             Vm.zWards = entities.WARDs.ToList();
             return View(Vm);
         }
+        public ActionResult User_ViewProjectList(int? page)
+        {
+            var Vm = entities.PROPERTies.ToList();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(Vm.ToPagedList(pageNumber, pageSize));
+        }
 
         [AllowAnonymous]
         public ActionResult About()

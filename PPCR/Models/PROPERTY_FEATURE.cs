@@ -15,7 +15,7 @@ namespace PPCR.Models
     public partial class PROPERTY_FEATURE
     {
         public int ID { get; set; }
-        public Nullable<int> Property_ID { get; set; }
+        public int Property_ID { get; set; }
         public Nullable<int> Feature_ID { get; set; }
     
         public virtual FEATURE FEATURE { get; set; }

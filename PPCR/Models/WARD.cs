@@ -22,7 +22,7 @@ namespace PPCR.Models
     
         public int ID { get; set; }
         public string WardName { get; set; }
-        public Nullable<int> District_ID { get; set; }
+        public int District_ID { get; set; }
         public Nullable<bool> Status { get; set; }
     
         public virtual DISTRICT DISTRICT { get; set; }

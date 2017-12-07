@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PPCR.Models;
 using PagedList;
 using PPCR.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace PPCRentalProject.Controllers
 {
@@ -30,17 +31,22 @@ namespace PPCRentalProject.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Admin_Decentralization(int id, USER user)
         {
-            var EditedInfo = entities.USERs.FirstOrDefault(x => x.ID == id);
-            EditedInfo.Email = user.Email;
-            EditedInfo.Password = user.Password;
-            EditedInfo.FullName = user.FullName;
-            EditedInfo.Phone = user.Phone;
-            EditedInfo.Address = user.Address;
-            EditedInfo.Role = user.Role;
-            EditedInfo.Status = user.Status;
-            //entities.SaveChanges();
+            using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
+            {
+                var EditedInfo = entities.USERs.FirstOrDefault(x => x.ID == id);
+                EditedInfo.Email = user.Email;
+                EditedInfo.Password = user.Password;
+                EditedInfo.FullName = user.FullName;
+                EditedInfo.Phone = user.Phone;
+                EditedInfo.Address = user.Address;
+                EditedInfo.Role = user.Role;
+                EditedInfo.Status = user.Status;
+                entities.Configuration.ValidateOnSaveEnabled = false;
+                entities.SaveChanges();
+            }
             return RedirectToAction("Admin_ControlPage");
         }
     }

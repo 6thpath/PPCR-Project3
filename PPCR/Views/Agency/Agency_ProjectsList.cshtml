@@ -1,0 +1,10 @@
+﻿@model PagedList.IPagedList<PPCR.Models.PROPERTY>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "My Projects List";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+    if (Convert.ToInt32(Session["Role"]) != 3)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}

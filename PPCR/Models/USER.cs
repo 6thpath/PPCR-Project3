@@ -31,7 +31,7 @@ namespace PPCR.Models
 
         [Required(ErrorMessage = "This field is required.")]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
@@ -44,7 +44,7 @@ namespace PPCR.Models
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [DataType(DataType.PhoneNumber)]
+        [Phone]
         [Display(Name = "Phone Number")]
         public string Phone { get; set; }
 

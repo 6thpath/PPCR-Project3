@@ -95,7 +95,15 @@ namespace PPCR.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-
-
+        public ActionResult ChangePassword(int id, USER user)
+        {
+            using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
+            {
+                var AccountDetails = entities.USERs.FirstOrDefault(x => x.ID == id);
+                AccountDetails.Password = user.Password;
+                entities.SaveChanges();
+                return RedirectToAction("AccountPage");
+            }
+        }
     }
 }
