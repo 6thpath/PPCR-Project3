@@ -7,6 +7,12 @@
     {
         Response.Redirect("~/Home/Index");
     }
+
+    var countAdmin = 0;
+    var countSale = 0;
+    var CountAgency = 0;
+    var ActivatedCount = 0;
+    var NotYetActivatedCount = 0;
 }
 <!--Libraries-->
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -76,12 +82,47 @@
                                         {
                                             <td class="text-center">Not yet activated</td>
                                         }
+                                        @*<td>
+                                            @if (@item.Status == false || @item.Status == null)
+                                            {
+                                                <a href="@Url.Action("Admin_ActivateAccount","Admin")/@item.ID" type="submit" class="btn btn-success">v</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="btn btn-danger">v</a>
+                                            }
+                                        </td>*@
+
+
                                         <td class="text-center ">
                                             <a href="~/Admin/Admin_Decentralization/@item.ID" class="btn btn-primary">Edit</a>
                                             <a href="#" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
 
+                                    <!--Count User type-->
+                                    if (Convert.ToInt32(item.Role) == 1)
+                                    {
+                                        countAdmin++;
+                                    }
+                                    else if (Convert.ToInt32(item.Role) == 2)
+                                    {
+                                        countSale++;
+                                    }
+                                    else
+                                    {
+                                        CountAgency++;
+                                    }
+
+                                    <!--Count Status-->
+                                    if(item.Status == true)
+                                    {
+                                        ActivatedCount++;
+                                    }
+                                    else
+                                    {
+                                        NotYetActivatedCount++;
+                                    }
                                 }
                             </tbody>
                         </table>
@@ -103,7 +144,7 @@
             <!--Roles table-->
             <div class="col-lg-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center">
+                    <div class="panel-heading text-center" style="font-family: Kalinga">
                         Roles
                     </div>
                     <!-- /.panel-heading -->
@@ -121,17 +162,17 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Admin</td>
-                                        <td> 1 </td>
+                                        <td style="color:red"> @countAdmin </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Sale</td>
-                                        <td> 3 </td>
+                                        <td style="color:purple"> @countSale </td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
                                         <td>Agency</td>
-                                        <td> Infinite </td>
+                                        <td style="color:deepskyblue"> @CountAgency </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -147,8 +188,8 @@
             <!--xx-->
             <div class="col-lg-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Context Classes
+                    <div class="panel-heading text-center" style="font-family: Kalinga">
+                        Account Status
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -157,36 +198,27 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
+                                        <th>Status</th>
+                                        <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="success">
                                         <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
+                                        <td>Activated</td>
+                                        <td>@ActivatedCount</td>
                                     </tr>
                                     <tr class="info">
                                         <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
+                                        <td>Not yet Activated</td>
+                                        <td>@NotYetActivatedCount</td>
                                     </tr>
-                                    <tr class="warning">
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>twitter</td>
+                                    @*<tr class="warning">
+                                        
                                     </tr>
                                     <tr class="danger">
-                                        <td>4</td>
-                                        <td>John</td>
-                                        <td>Smith</td>
-                                        <td>jsmith</td>
-                                    </tr>
+                                        
+                                    </tr>*@
                                 </tbody>
                             </table>
                         </div>

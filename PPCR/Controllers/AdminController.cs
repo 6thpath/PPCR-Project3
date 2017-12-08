@@ -49,5 +49,19 @@ namespace PPCRentalProject.Controllers
             }
             return RedirectToAction("Admin_ControlPage");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Admin_ActivateAccount(int id, USER user)
+        {
+            using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
+            {
+                var EditedInfo = entities.USERs.FirstOrDefault(x => x.ID == id);
+                EditedInfo.Status = true;
+                //entities.Configuration.ValidateOnSaveEnabled = false;
+                entities.SaveChanges();
+            }
+            return RedirectToAction("Admin_ControlPage");
+        }
     }
 }

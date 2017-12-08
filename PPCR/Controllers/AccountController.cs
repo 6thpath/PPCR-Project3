@@ -76,6 +76,7 @@ namespace PPCR.Controllers
                     Session["Email"] = UserDetails.Email;
                     Session["FullName"] = UserDetails.FullName;
                     Session["Role"] = UserDetails.Role;
+                    Session["Status"] = UserDetails.Status;
                     if (Convert.ToInt32(Session["Role"]) == 1)
                     {
                         return RedirectToAction("Admin_ControlPage", "Admin");
@@ -94,15 +95,28 @@ namespace PPCR.Controllers
             Session.Abandon();
             return RedirectToAction("Login", "Account");
         }
+        [HttpGet]
+        public ActionResult ChangePassword(int id)
+        {
+            using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
+            {
+                var UserInfo = entities.USERs.FirstOrDefault(x => x.ID == id);
+                return View(UserInfo);
+            }
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(int id, USER user)
         {
             using (DemoPPCRentalEntities entities = new DemoPPCRentalEntities())
             {
                 var AccountDetails = entities.USERs.FirstOrDefault(x => x.ID == id);
-                AccountDetails.Password = user.Password;
+                AccountDetails.Password = Crypto.Hash(user.Password);
+                AccountDetails.ConfirmPassword = Crypto.Hash(user.ConfirmPassword);
+                entities.Configuration.ValidateOnSaveEnabled = false;
                 entities.SaveChanges();
-                return RedirectToAction("AccountPage");
+                return Redirect(Url.Action("Agency_AccountPage", "Agency") +"/"+ Session["ID"]);
             }
         }
     }

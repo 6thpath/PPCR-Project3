@@ -14,73 +14,121 @@
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 <link href="~/Content/metisMenu.min.css" rel="stylesheet" />
 
+<style>
+    .divider::before, .divider::after {
+        bottom: 6px;
+        color: black;
+        content: "______________________________";
+        position: relative;
+    }
+
+    .divider::after {
+        left: 10px;
+    }
+
+    .divider::before {
+        right: 10px;
+    }
+
+    #infotable {
+        background: #4AC29A; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #BDFFF3, #4AC29A); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-radius: 30px;
+    }
+
+    dt {
+        font-family: "Roboto",Helvetica,Arial,sans-serif;
+        line-height: 26px;
+    }
+
+    dd {
+        font-family: Kalinga;
+        line-height: 29px;
+    }
+</style>
+
 <!---->
 <div id="wrapper">
     <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-5">
+                    <img src="~/img/proinf3.png" class="img-responsive" />
+                </div>
+                <div id="infotable" class="col-lg-7">
+                    <h5 style="font-weight:bold"><i class="fa fa-user-circle-o" aria-hidden="true"></i> USER INFOMATION</h5>
+                    <div class="divider"><i class="fa fa-heart-o fa-lg"></i></div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
 
-        <div>
-            <h4>USER</h4>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Email)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Email)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Password)
-                </dt>
+                        <dd>
+                            <a href="@Url.Action("ChangePassword","Account")/@Session["ID"]">Change Password</a>
+                            
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Password)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FullName)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.FullName)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Phone)
-                </dd>
+                        @if ((@Html.DisplayFor(model => model.Role)).ToString() == "3")
+                        {
+                            <dd>
+                                Agency
+                            </dd>
+                        }
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Address)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Address)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Role)
-                </dt>
+                        @if (Convert.ToBoolean(Session["Status"]) == true)
+                        {
+                            <dd>
+                                Activated
+                            </dd>
+                        }
+                    </dl>
+                    <h5 style="font-weight:bold"><i class="fa fa-phone-square" aria-hidden="true"></i> CONTACT</h5>
+                    <div class="divider"><i class="fa fa-heart-o fa-lg"></i></div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Role)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Status)
-                </dd>
-
-            </dl>
-        </div>
-
+                        <dd>
+                            @Html.DisplayFor(model => model.Address)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
     </div>
     <!-- /#page-wrapper -->
 </div>

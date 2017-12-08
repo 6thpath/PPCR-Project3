@@ -73,7 +73,7 @@
                     @if (ViewBag.Title == "My Profile")
                     {
                         <li>
-                            <a href="@Url.Action("Agency_AccountPage","Agency")" class="active"><i class="fa fa-user-circle" aria-hidden="true"></i> My Profile</a>
+                            <a href="@Url.Action("Agency_AccountPage","Agency")/@Session["ID"]" class="active"><i class="fa fa-user-circle" aria-hidden="true"></i> My Profile</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Agency_ProjectsList","Agency")"><i class="fa fa-bar-chart-o fa-fw"></i> My Projects</a>
@@ -82,7 +82,7 @@
                     else
                     {
                         <li>
-                            <a href="@Url.Action("Agency_AccountPage","Agency")"><i class="fa fa-user-circle" aria-hidden="true"></i> My Profile</a>
+                            <a href="@Url.Action("Agency_AccountPage","Agency")/@Session["ID"]"><i class="fa fa-user-circle" aria-hidden="true"></i> My Profile</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Agency_ProjectsList","Agency")" class="active"><i class="fa fa-bar-chart-o fa-fw"></i> My Projects</a>
