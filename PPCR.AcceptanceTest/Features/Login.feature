@@ -5,6 +5,6 @@
 @mytag
 Scenario: Login
 	Given I was in the Login View
-	And I filled the username and password field
+	And I filled the username and password field 
 	When I press Login
 	Then I should be Logged in and arrive at homepage
