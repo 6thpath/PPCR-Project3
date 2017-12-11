@@ -50,11 +50,11 @@
                 <tr>
                     <td style="width:90%">
                         <span style="color:#ff0000; text-shadow:1px 1px 50px #ff0000;padding-left: 10px"><i class="fa fa-file-code-o" aria-hidden="true"></i></span> &nbsp;
-                        <span style="text-shadow:2px 2px 10px #747171">
+                        <span id="propertynameandprice" style="text-shadow:2px 2px 10px #747171">
                             @Html.DisplayFor(model => model.PropertyName) -
                         <span style="color:#0026ff; text-shadow:1px 1px 50px #0026ff;">@Html.DisplayFor(model => model.Price)</span>
                         @Html.DisplayFor(model => model.UnitPrice)
-                    </span>
+                        </span>
                 </td>
                 <td style="width:10%"></td>
             </tr>
@@ -63,7 +63,7 @@
 
     <!--Property Avatar-->
     <div style="text-align:center; padding: 10px;">
-        <img src="~/img/DatabaseImages/@Model.Avatar" class="img-responsive img-thumbnail" width="50%" />
+        <img src="~/img/DatabaseImages/@Model.Avatar" class="img-responsive img-thumbnail" style="width:50%" />
     </div>
 
     <!--Project Details-->
@@ -75,15 +75,15 @@
                 <td style="width:2%"></td>
                 <!--Bedroom-->
                 <td>
-                    <p><i class="fa fa-bed" aria-hidden="true"></i> Beds: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.BedRoom)</span></p>
+                    <p id="bedroom"><i class="fa fa-bed" aria-hidden="true"></i> Beds: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.BedRoom)</span></p>
                 </td>
                 <!--Bathroom-->
                 <td>
-                    <p><i class="fa fa-bath" aria-hidden="true"></i> Baths: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.BathRoom)</span></p>
+                    <p id="bathroom"><i class="fa fa-bath" aria-hidden="true"></i> Baths: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.BathRoom)</span></p>
                 </td>
                 <!--Parking Place-->
                 <td>
-                    <p><i class="fa fa-car" aria-hidden="true"></i> Parking Place: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.PackingPlace)</span></p>
+                    <p id="parkingplace"><i class="fa fa-car" aria-hidden="true"></i> Parking Place: &nbsp; <span style="font-size:20px;font-weight:bold; color:#0026ff">@Html.DisplayFor(model => model.PackingPlace)</span></p>
                 </td>
             </tr>
 
@@ -91,16 +91,30 @@
                 <td style="width:2%"></td>
                 <!--District-->
                 <td>
-                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> District: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.DISTRICT.DistrictName)</span></p>
+                    <p id="district"><i class="fa fa-map-marker" aria-hidden="true"></i> District: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.DISTRICT.DistrictName)</span></p>
                 </td>
                 <!--Ward-->
                 <td>
-                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> Ward: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.WARD.WardName)</span></p>
+                    <p id="ward"><i class="fa fa-map-marker" aria-hidden="true"></i> Ward: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.WARD.WardName)</span></p>
 
                 </td>
                 <!--Street-->
                 <td>
-                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> Street: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.STREET.StreetName)</span></p>
+                    <p id="street"><i class="fa fa-map-marker" aria-hidden="true"></i> Street: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.STREET.StreetName)</span></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:2%"></td>
+                <td>
+
+                </td>
+                <!--Area-->
+                <td>
+                    <p id="area"><i class="fa fa-crop" aria-hidden="true"></i> Area: &nbsp; <span style="font-family:Corbel; font-size:20px; color:#0026ff">@Html.DisplayFor(model => model.Area)</span></p>
+                </td>
+                <td>
+
                 </td>
             </tr>
         </table>
@@ -123,13 +137,13 @@
                     <p>@Html.DisplayFor(model => model.Content).</p>
                 </td>
                 <td style="width:30%; padding:10px; text-align:center; color:red; font-weight:bold">
-                    <p>@Html.DisplayFor(model => model.PROPERTY_TYPE.CodeType)</p>
+                    <p id="propertytype">@Html.DisplayFor(model => model.PROPERTY_TYPE.CodeType)</p>
                 </td>
             </tr>
             <tr>
                 <td style="width:30%;padding:10px;text-align:center;">
                     <p style="font-size:20px;"><i class="fa fa-flag" aria-hidden="true"></i> &nbsp; PROJECT STATUS</p>
-                    <p style="font-family:Corbel; ">@Html.DisplayFor(model => model.PROJECT_STATUS.Status_Name)</p>
+                    <p id="propertystatus" style="font-family:Corbel; ">@Html.DisplayFor(model => model.PROJECT_STATUS.Status_Name)</p>
                 </td>
             </tr>
         </table>

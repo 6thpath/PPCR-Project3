@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPCR", "PPCR\PPCR.csproj", "{C0DE5E81-6E14-485C-B249-6F8A8C3A9A64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPCR.AcceptanceTest", "PPCR.AcceptanceTest\PPCR.AcceptanceTest.csproj", "{5409BF6B-5BC3-4ABE-855E-101D9F59B1A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPCR.AcceptanceTests", "PPCR.AcceptanceTest\PPCR.AcceptanceTests.csproj", "{5409BF6B-5BC3-4ABE-855E-101D9F59B1A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

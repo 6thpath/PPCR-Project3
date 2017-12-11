@@ -9,14 +9,17 @@
                 @if (Convert.ToInt32(Session["Role"]) == 3)
                 {
                     @*@Html.ActionLink("Welcome back " + Session["FullName"].ToString() + "!", "Agency_AccountPage", "Agency")*@
-                    <a href="@Url.Action("Agency_AccountPage", "Agency")/@Convert.ToInt32(Session["ID"])">Welcome back @Session["FullName"].ToString()!</a>
+                    <a id="user" href="@Url.Action("Agency_AccountPage", "Agency")/@Convert.ToInt32(Session["ID"])">Welcome back @Session["FullName"].ToString()!</a>
                 }
                 else
                 {
                     @Html.ActionLink("Welcome back " + Session["FullName"].ToString() + "!", "Index", "Home")
                 }
             </li>
-            <li>@Html.ActionLink("Logout","Logout","Account")</li>
+            <li>
+                @*@Html.ActionLink("Logout","Logout","Account")*@
+                <a id="logout" href="@Url.Action("Logout", "Account")">Logout</a>
+            </li>
         </ul>
     }
 }
