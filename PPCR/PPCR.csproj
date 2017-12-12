@@ -349,6 +349,7 @@
     <Content Include="Views\Agency\Agency_ProjectsList.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Agency\Agency_AccountPage.cshtml" />
+    <Content Include="Views\Agency\Agency_UpdateInfomation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

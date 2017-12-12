@@ -127,8 +127,11 @@
                             @Html.DisplayFor(model => model.Address)
                         </dd>
                     </dl>
+                    <div class="divider"><i class="fa fa-heart-o fa-lg"></i></div>
+                    <a class="btn btn-info" href="@Url.Action("Agency_UpdateInfomation","Agency")/@Session["ID"]">Edit</a>
                 </div>
             </div>
+        
     </div>
     <!-- /#page-wrapper -->
 </div>

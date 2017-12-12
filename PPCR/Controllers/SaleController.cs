@@ -55,5 +55,11 @@ namespace PPCRentalProject.Controllers
             entities.SaveChanges();
             return RedirectToAction("Sale_ProjectsList");
         }
+
+        [HttpGet]
+        public ActionResult Sale_ProjectTypeManage()
+        {
+            return View();
+        }
     }
 }
