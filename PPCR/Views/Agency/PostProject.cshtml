@@ -1,0 +1,299 @@
+﻿@model PPCR.Models.PROPERTY
+
+@{
+    ViewBag.Title = "PostProject";
+}
+
+<h2>Post Property</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PROPERTY</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <!--Property Name-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.PropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PropertyName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PropertyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Avatar-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Avatar, new { htmlAttributes = new { @class = "form-control", @id = "avatar", @name = "avatar" } })
+                @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+
+                <input type="file" id="fileUpload2" accept="image/*" name="fileUpload2" style="display:none;" />
+                <input type="button" id="btnUpload2" value="..." class="btn btn-success" />
+            </div>
+            <img id="avatareUpload" width="300 " />
+        </div>
+        <!--Image-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control", @id = "picture", @name = "picture" } })
+                @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+
+                <input type="file" id="fileUpload" accept="image/*" name="fileUpload" style="display:none;" />
+                <input type="button" id="btnUpload" value="..." class="btn btn-success" />
+            </div>
+        </div>
+        <!--Property type-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.PropertyType_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PropertyType_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PropertyType_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Content-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Street-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Street_ID, "Street", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Street_ID", new SelectList(ViewBag.streetName, "ID", "StreetName"))
+                @Html.ValidationMessageFor(model => model.Street_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Ward-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ward_ID, "Ward", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Ward_ID", new SelectList(ViewBag.wardName, "ID", "WardName"))
+                @Html.ValidationMessageFor(model => model.Ward_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--District-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.District_ID, "District", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("District_ID", new SelectList(ViewBag.districtName, "ID", "DistrictName"))
+                @Html.ValidationMessageFor(model => model.District_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Price-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Unit Price-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Area-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Bedroom-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.BedRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BedRoom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BedRoom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Bathroom-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.BathRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BathRoom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BathRoom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Parking Place-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.PackingPlace, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PackingPlace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PackingPlace, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--User ID-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Created_at, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Created_at, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Created_at, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Create At-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Create_post, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Create_post, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Create_post, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Create Post-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Note-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--Update At-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Updated_at, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Updated_at, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Updated_at, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- Sale ID -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sale_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sale_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sale_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section upload
+{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+
+                $('#fileUpload').trigger('click');
+
+
+
+            });
+
+            $('#fileUpload').change(function () {
+
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Agency/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#picture').val(urlImage);
+
+                            },
+                            error: function (err) {
+                                alert('Xay ra loi khi upload:' + err.statusText);
+                            }
+
+                        });
+
+                }
+
+            });
+
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#btnUpload2').click(function () {
+
+                $('#fileUpload2').trigger('click');
+
+
+
+            });
+
+            $('#fileUpload2').change(function () {
+
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $('#fileUpload2').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Agency/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+
+                                $('#avatareUpload').attr('src', urlImage);
+                                $('#avatar').val(urlImage);
+
+                            },
+                            error: function (err) {
+                                alert('Xay ra loi khi upload:' + err.statusText);
+                            }
+
+                        });
+
+                }
+
+            });
+
+        });
+    </script>
+}
